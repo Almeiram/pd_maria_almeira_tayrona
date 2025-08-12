@@ -84,7 +84,7 @@ http://localhost:3000
 ---
 
 ### Entity-relationship diagram
-![Entity-relationship diagram](./docs/relational_model.ppg.jpg)
+./docs/relational_model.ppg.jpg
 
 ---
 
@@ -197,7 +197,6 @@ Creates a...
 {
     "mensaje": "transaction update"
 }
-`lo que regrese la respuesta de la query en postman`
 ```
 
 ---
