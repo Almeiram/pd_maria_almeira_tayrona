@@ -17,14 +17,12 @@ This is an application that generates a solution for implementing information or
 
 ## Project structure
 ```bash
-biblioteca/
+SpertSort/
 │
 ├── docs/ # Documentation
-│       ...
-├── app/ # Frontend (HTML, CSS, JS)
-│       ...
+│  ...
 ├── server/ # Backend
-│       ...
+│   ...
 ├── index.html 
 ├── .env # Variables de entorno
 ├── .gitignore
@@ -36,8 +34,7 @@ biblioteca/
 1. Clone the repository:
 
 ```bash
-git clone 
-cd 
+git clone https://github.com/Almeiram/pd_maria_almeira_tayrona.git
 ```
 1. Install dependencies:
 
@@ -71,11 +68,11 @@ http://localhost:3000
 ```bash
 | method | route             | Description                 |
 | ------ | ----------------- | --------------------------- |
-| GET    | /api/v1/preos     | Obtener todos los préstamos |
-| GET    | /api/v1/prestamos | Obtener un préstamo por ID  |
-| POST   | /api/v1/prestamos | Crear un nuevo préstamo     |
-| PUT    | /api/v1/prestamos | Actualizar un préstamo      |
-| DELETE | /api/v1/prestamos | Eliminar un préstamo        |
+| GET    | /api/v1/customers | Get all the loans           |
+| GET    | /api/v1/customers | Get a client by IDD         |
+| POST   | /api/v1/customers | Create a new client         |
+| PUT    | /api/v1/customers | Update a client             |
+| DELETE | /api/v1/customers | delete a client             |
   
 ```
 
@@ -92,7 +89,7 @@ http://localhost:3000
 ---
 
 ### Tables
-
+```bash
 #### **clientes**
 | ----------------- ------------------------------------------------------------------------ | 
 | Field                 | Data type       | constraints| Description|
@@ -106,47 +103,33 @@ http://localhost:3000
 | -------------------------------------------------------------------------------------------|
 
 #### **facturas**
-| ----------------- ------------------------------------------------------------------------ | 
-| Field                 | Data type          | constraints| Description|
-| ----------------- ---------------------------------------------------------------------------- 
-| numero_factura        |varchar(20) intprimay key  |not null     |  not null   |  unique identifier|
-| plataforma_utilizada  | enum('nequi','daviplata') |not null     | varchar(200)        | not null  |
-| periodo_facturacion   |date unique  int           | not null    |             |      |                     
-| monto_facturado       | int |not null             | varchar(200)|     | not null              |      
-| monto_pagado          |int varchar(20)            |             |   not null                  |      
-| ----------------------------------------------------------------------------------------------|
+| ----------------- --------------------------------------------------------------------------| 
+| Field                 | Data type                 | constraints |       Description         |  
+| ----------------- --------------------------------------------------------------------------| 
+| numero_factura        |varchar(20) intprimay key  |not null     |   unique identifier       |
+| plataforma_utilizada  | enum('nequi','daviplata') |             |                           | 
+|                       |  varchar(200)             |not null     |                           |
+| periodo_facturacion   |date unique  int           | not null    |                           |                     
+| monto_facturado       | int |not null             | varchar(200)|                           |      
+| monto_pagado          |int varchar(20)            |             |                           |      
+| --------------------------------------------------------------------------------------------|
 
 #### **clientes**
 | ----------------- ------------------------------------------------------------------------ | 
-| Field                 | Data type       | constraints| Description|
+| Field                 | Data type              | constraints  | Description                | 
 | ----------------- ------------------------------------------------------------------------ | 
-| iid_transaccion _varchar(15) not null primary key
-| fecha_hora_transaccion date not null                        |
-| monto_transaccion int                                |
-| tipo_transaccion varchar(100) not null                               |
-| id_cliente                                |
-| correo_electronico    | varchar(100)    | not null    |                                    | 
+| iid_transaccion       | varchar(15)            | not null      | primary key               | 
+| fecha_hora_transaccion| date not null          |               |                           | 
+| monto_transaccion int |                        |               |                           | 
+| tipo_transaccion      |varchar(100) not null   |               |                           | 
+| id_cliente            |                        |               |                           | 
+| correo_electronico    | varchar(100)           | not null      |                           | 
 | -------------------------------------------------------------------------------------------|
-
-
-
-
-
-
-some descriptions
- PRIMARY KEY → Unique identifier for the `nombre de lo que identifica`,
- FOREING KEY → References `tabla.campo que referencia`
- `campo` name
- `campo` date
- `campo` description
- national identification number 
- `campo` email address
- gender
-
-----
+```
 
 #### Relationships
-- ** 1 `uno`eje: un profesor  → N `muchos`puede tenemos muchos estudiantes **
+- ** 1 `uno`customer  → N `many transactions **
+- ** 1 `uno`trasaction  → N `Many invoices **
 
 ---
 
@@ -155,12 +138,6 @@ some descriptions
 All API requests use the base URL: `(http://localhost:3000)` 
 
 ---
-
-### **ejemplo :  Historial de un libro por su ISBN**
-**URL:** GET `/prestamos/historial/:isbn` 
-**Description:**
-retruns a ...
-
 **response 200 example:**
 ```json
    {
@@ -195,23 +172,13 @@ Creates a...
 **response 200 example:**
 ```json
 {
-    "mensaje": "prestamo creado exitosamente"
+    "mensaje": "customer creado exitosamente"
 }
 ```
 
 ---
 
-**URL:** PUT `/prestamos/31`
-**Description:**
-Updates a...
-
-**Path Paramenters:**
-| Name | Type | Required | Description |
-| id---- | int---- | yes-------- | id to update----------- |
-
-some description:
-`campo` to update
-
+**URL:** PUT `/customers/31`
 
 **request body example:**
 ```json
@@ -222,8 +189,7 @@ some description:
         "usuario": "Helena Micaela Alvarado",
         "isbn": "978-1-968004-87-3",
         "libro": "Modi beatae"
-    }
-`lo que envias en el body de la query en postman`
+ }
 ```
 
 **response 200 example:**
@@ -237,14 +203,10 @@ some description:
 ---
 
 **URL:** DELETE `/customers/31`
-**Description:**
-
-
 
 **response 200 example:**
 ```json
 {
     "mensaje": "trasaction delete"
 }
-`lo que regrese la respuesta de la query en postman`
 ```
